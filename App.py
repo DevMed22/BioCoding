@@ -33,9 +33,13 @@ tabview.set("Home")
 # ----------------sec_1-----------#
 def count_this():
     seq = entry_1.get()
-    # print(seq)
+    l = len(seq)
+    num_G = seq.count("G")
+    num_C = seq.count("C")
+    total = num_C + num_G
+    gc_count = total / l
     label_2 = customtkinter.CTkLabel(master=sec_1,
-                                     text=seq,
+                                     text=gc_count,
                                      width=120,
                                      height=25,
                                      corner_radius=8,
