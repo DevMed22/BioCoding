@@ -23,6 +23,9 @@ tab_4 = tabview.add("tab 4")
 tab_5 = tabview.add("tab 5")
 tab_6 = tabview.add("tab 6")
 tab_7 = tabview.add("tab 7")
+tab_8 = tabview.add("tab 8")
+tab_9 = tabview.add("tab 9")
+
 
 tabview.set("tab 1")
 
@@ -620,5 +623,116 @@ table_bt = customtkinter.CTkButton(master=tab_7,
                                   text="Calculate distance",
                                   command=cal_dist)
 table_bt.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+
+# ------------------------tab_8-------------------#
+def lcs():
+    X = seq1_entry.get()
+    Y = seq2_entry.get()
+    m = len(X)
+    n = len(Y)
+
+    L = [[None] * (n + 1) for i in range(m + 1)]
+
+    for i in range(m + 1):
+        for j in range(n + 1):
+            if i == 0 or j == 0:
+                L[i][j] = 0
+            elif X[i - 1] == Y[j - 1]:
+                L[i][j] = L[i - 1][j - 1] + 1
+            else:
+                L[i][j] = max(L[i - 1][j], L[i][j - 1])
+
+    textbox = customtkinter.CTkTextbox(tab_8, width=400, height=100)
+    textbox.place(relx=0.5, rely=0.7, anchor=tkinter.CENTER)
+
+    textbox.insert("0.0", f"The Length of Longest common SubSequences = {int(L[m][n])}")  # insert at line 0 character 0
+    textbox.get("0.0", "end")  # get text from line 0 character 0 till the end
+
+    textbox.configure(state="disabled")  # configure textbox to be read-only
+
+
+# ------------------------------------------
+label_2 = customtkinter.CTkLabel(master=tab_8,
+                                 text="Calculating longest common SubSequences",
+                                 width=120,
+                                 height=25,
+                                 corner_radius=8,
+                                 font=("Roboto", 20))
+label_2.pack(pady=12, padx=10)
+label_2.place(relx=0.5, rely=0.1, anchor=tkinter.CENTER)
+
+seq1_entry = customtkinter.CTkEntry(master=tab_8,
+                                 placeholder_text="Sequence 1",
+                                 width=240,
+                                 height=30,
+                                 border_width=2,
+                                 corner_radius=10)
+seq1_entry.place(relx=0.5, rely=0.3, anchor=tkinter.CENTER)
+
+seq2_entry = customtkinter.CTkEntry(master=tab_8,
+                                 placeholder_text="Sequence 2",
+                                 width=240,
+                                 height=30,
+                                 border_width=2,
+                                 corner_radius=10)
+seq2_entry.place(relx=0.5, rely=0.4, anchor=tkinter.CENTER)
+
+lcs_bt = customtkinter.CTkButton(master=tab_8,
+                                  width=120,
+                                  height=32,
+                                  border_width=0,
+                                  corner_radius=8,
+                                  text="Calculate LCS",
+                                  command=lcs)
+lcs_bt.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+
+# ------------------------tab_2-------------------#
+def fib():
+    N = int(n_entry.get())
+    if N < 1:
+        res = 0
+        textbox = customtkinter.CTkTextbox(tab_9, width=400, height=100)
+        textbox.place(relx=0.5, rely=0.7, anchor=tkinter.CENTER)
+
+        textbox.insert("0.0", f"Fibonacci of {N} = {res}")  # insert at line 0 character 0
+        textbox.configure(state="disabled")  # configure textbox to be read-only
+    dp = [0 for i in range(N + 1)]
+    dp[1] = 1
+    for i in range(2, N + 1):
+        dp[i] = dp[i - 1] + dp[i - 2]
+
+    textbox = customtkinter.CTkTextbox(tab_9, width=400, height=100)
+    textbox.place(relx=0.5, rely=0.7, anchor=tkinter.CENTER)
+
+    textbox.insert("0.0", f"Fibonacci of {N} = {dp[-1]}")  # insert at line 0 character 0
+    textbox.configure(state="disabled")  # configure textbox to be read-only
+
+
+# ------------------------------------------
+label_2 = customtkinter.CTkLabel(master=tab_9,
+                                 text="Fibonacci",
+                                 width=120,
+                                 height=25,
+                                 corner_radius=8,
+                                 font=("Roboto", 20))
+label_2.pack(pady=12, padx=10)
+label_2.place(relx=0.5, rely=0.1, anchor=tkinter.CENTER)
+
+n_entry = customtkinter.CTkEntry(master=tab_9,
+                                 placeholder_text="Enter the number",
+                                 width=240,
+                                 height=30,
+                                 border_width=2,
+                                 corner_radius=10)
+n_entry.place(relx=0.5, rely=0.3, anchor=tkinter.CENTER)
+
+fb_bt = customtkinter.CTkButton(master=tab_9,
+                                  width=120,
+                                  height=32,
+                                  border_width=0,
+                                  corner_radius=8,
+                                  text="Fibonacci",
+                                  command=fib)
+fb_bt.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
 app.mainloop()
