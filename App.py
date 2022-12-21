@@ -554,7 +554,7 @@ table_bt = customtkinter.CTkButton(master=tab_6,
                                   command=table)
 table_bt.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
-# ------------------------tab_6-------------------#
+# ------------------------tab_7-------------------#
 def cal_dist():
     seq1 = seq1_entry.get()
     seq2 = seq2_entry.get()
